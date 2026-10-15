@@ -1,0 +1,28 @@
+<section class="conversation-list">
+  <header class="list-header">
+    <h1>
+      Conversas
+    </h1>
+    <label class="search-box">
+      <span aria-hidden="true">⌕</span>
+      <input type="search" [(ngModel)]="busca"
+        placeholder="Pesquisar no chat" aria-label="Pesquisar Contatos">
+    </label>
+  </header>
+
+  <p class="list-state" *ngIf="carregando">Carregando Contatos</p>
+  <p class="list-state" *ngIf="erro">{{ erro }}</p>
+
+  <nav class="conversation-items" aria-label="Contatos">
+    <a class="conversation-item" *ngFor="let usuario of usuarios"
+      [routerLink]="['/conversas/mensagens', usuario.id]">
+      routerLinkActive="selected"
+      <span class="avatar">{{ usuario.nome.charAt(0).toUpperCase() }}</span>
+      <span class="person-name">{{ usuario.nome }}</span>
+    </a>
+  </nav>
+
+  <p class="list-state" *ngIf="!carregando && !erro && usuarios.length === 0">
+    Nenhum contato encontrado
+  </p>
+</section>
