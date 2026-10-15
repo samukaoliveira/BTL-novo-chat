@@ -7,12 +7,14 @@ import { ConversasComponent } from './conversas/conversas.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ChatComponent } from './chat/chat.component';
+import { MensagensComponent } from './mensagens/mensagens.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ConversasComponent,
-    ChatComponent
+    ChatComponent,
+    MensagensComponent
   ],
   imports: [
     BrowserModule,
