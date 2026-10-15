@@ -1,0 +1,10 @@
+<div class="chat-layout" [class.conversation-open]="conversaSelecionada">
+  <aside class="chat-sidebar"><app-conversas></app-conversas></aside>
+  <main class="chat-main">
+    <router-outlet></router-outlet>
+    <section class="welcome" *ngIf="!conversaSelecionada">
+      <h2>Suas mensagens</h2>
+      <p>Escolha um contato para abrir a conversa</p>
+    </section>
+  </main>
+</div>
