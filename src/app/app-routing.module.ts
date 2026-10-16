@@ -6,10 +6,14 @@ import { MensagensComponent } from './mensagens/mensagens.component';
 
 const routes: Routes = [
   { path: 'conversas',
-    component: ChatComponent },
+    component: ChatComponent,
+    children: [
+      { path: 'mensagens/:usuarioId', component: MensagensComponent }
+    ]
+  },
   { path: 'mensagens',
   component: MensagensComponent },
-  { path: '', redirectTo: 'conversas', pathMatch: 'full'}
+  { path: '', redirectTo: '', pathMatch: 'full'}
 ];
 
 @NgModule({

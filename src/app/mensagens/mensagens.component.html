@@ -1,7 +1,22 @@
-<section>
-  <header>
+<section class="conversation-panel">
+  <header class="conversation-header">
     <a routerLink="/conversas" aria-label="Voltar para contatos">←
     </a>
     <h2>{{ usuario?.nome || 'Conversa' }}</h2>
   </header>
+
+  <div class="message-list">
+    <p class="empty" *ngIf="mensagens.length === 0">
+      Envie uma mensagem para começar.
+    </p>
+    <div class="message-row" *ngFor="let mensagem of mensagens">
+      <div class="message-bubble">{{ mensagem.conteudo }}</div>
+    </div>
+  </div>
+
+  <form class="composer" (ngSubmit)="enviar()">
+    <input name="novaMensagem" [(ngModel)]="novaMensagem"
+      placeholder="Digite uma mensagem..." autocomplete="off">
+    <button type="submit" [disabled]="!novaMensagem.trim()">Enviar</button>
+  </form>
 </section>
