@@ -5,6 +5,9 @@ import { Mensagem } from '../models/mensagem';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
+
+  const USUARIO_ATUAL_ID = 1;
+
 @Component({
   selector: 'app-mensagens',
   templateUrl: './mensagens.component.html',
@@ -30,6 +33,7 @@ export class MensagensComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.routeSubscription = this.route.paramMap.subscribe(params => {
       this.usuarioId = Number(params.get('usuarioId'));
+      this.mensagens = [];
       this.carregar();
     })
   }
@@ -61,6 +65,14 @@ export class MensagensComponent implements OnInit, OnDestroy {
       },
       error: erro => console.error('Erro ao enviar mensagem', erro)
     })
+  }
+
+  formatarDataHora(dataHora: string): string {
+    return this.conversasService.formatarHora(dataHora);
+  }
+
+  isMinhaMensagem(mensagem: Mensagem): boolean {
+    return mensagem.senderId === USUARIO_ATUAL_ID;
   }
 
 }

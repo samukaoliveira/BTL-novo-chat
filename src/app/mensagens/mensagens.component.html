@@ -10,13 +10,16 @@
       Envie uma mensagem para começar.
     </p>
     <div class="message-row" *ngFor="let mensagem of mensagens">
-      <div class="message-bubble">{{ mensagem.conteudo }}</div>
+      <div class="message-bubble" *ngIf="isMinhaMensagem(mensagem)">{{ mensagem.conteudo }}</div>
+      <div class="minha-message-bubble" *ngIf="!isMinhaMensagem(mensagem)">{{ mensagem.conteudo }}</div>
+      <div class="message-bubble">{{ formatarDataHora(mensagem.horaEnvio) }}</div>
     </div>
   </div>
 
   <form class="composer" (ngSubmit)="enviar()">
     <input name="novaMensagem" [(ngModel)]="novaMensagem"
-      placeholder="Digite uma mensagem..." autocomplete="off">
+      placeholder="Digite uma mensagem..." autocomplete="off"
+      (keydown.enter)="$event.preventDefault(); enviar();">
     <button type="submit" [disabled]="!novaMensagem.trim()">Enviar</button>
   </form>
 </section>
